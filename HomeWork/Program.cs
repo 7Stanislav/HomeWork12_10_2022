@@ -45,6 +45,7 @@ void MaxToMin(int[,] array)
 // 5 2 6 7
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
+/*
 int[,] array1 = new int[4, 4];
 FillArray(array1);
 PrintArray(array1);
@@ -72,6 +73,52 @@ void MinRowSum(int[,] array)
     }
     Console.Write($"{minSumRow + 1} строка");
 }
+*/
+
+//Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+// 01 02 03 04
+// 12 13 14 05
+// 11 16 15 06
+// 10 09 08 07
+
+int num = 4;
+int[,] array1 = new int[num, num];
+FillArray1(array1, num);
+PrintArray1(array1);
+
+void FillArray1(int[,] array, int n)
+{
+    int i = 0, j = 0;
+    int value = 1;
+    for (int e = 0; e < n * n; e++)
+    {
+        int k = 0;
+        do { array[i, j++] = value++; } while (++k < n - 1);
+        for (k = 0; k < n - 1; k++) array[i++, j] = value++;
+        for (k = 0; k < n - 1; k++) array[i, j--] = value++;
+        for (k = 0; k < n - 1; k++) array[i--, j] = value++;
+        ++i; ++j;
+        n = n < 2 ? 0 : n - 2;
+    }
+}
+
+void PrintArray1(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i, j] < 10)
+            {
+                Console.Write("0" + array[i, j]);
+                Console.Write(" ");
+            }
+            else Console.Write(array[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
 
 
 
