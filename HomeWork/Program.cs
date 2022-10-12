@@ -8,23 +8,13 @@
 // 9 5 3 2
 // 8 4 4 2
 
+/*
 int[,] array1 = new int[3, 4];
 FillArray(array1);
 PrintArray(array1);
 MaxToMin(array1);
 Console.WriteLine();
 PrintArray(array1);
-
-void FillArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            array[i, j] = new Random().Next(1, 10);
-        }
-    }
-}
 
 void MaxToMin(int[,] array)
 {
@@ -41,6 +31,58 @@ void MaxToMin(int[,] array)
                     array[i, x] = temp;
                 }
             }
+        }
+    }
+}
+*/
+
+
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 5 2 6 7
+// Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+
+int[,] array1 = new int[4, 4];
+FillArray(array1);
+PrintArray(array1);
+Console.WriteLine();
+MinRowSum(array1);
+
+void MinRowSum(int[,] array)
+{
+    int minRow = 0;
+    int minSumRow = 0;
+    int sumRow = 0;
+    for (int i = 0; i < array1.GetLength(1); i++)
+    {
+        minRow += array1[0, i];
+    }
+    for (int i = 0; i < array1.GetLength(0); i++)
+    {
+        for (int j = 0; j < array1.GetLength(1); j++) sumRow += array1[i, j];
+        if (sumRow < minRow)
+        {
+            minRow = sumRow;
+            minSumRow = i;
+        }
+        sumRow = 0;
+    }
+    Console.Write($"{minSumRow + 1} строка");
+}
+
+
+
+
+void FillArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(1, 10);
         }
     }
 }
